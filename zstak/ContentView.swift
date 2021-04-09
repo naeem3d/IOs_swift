@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-
+    @State var secondPass = 0.0
     @State private var isActive = true
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State var weather = "Soft"
-    @State var timepoiling = 0
+    @State var timepoiling = 0.0
+    @State var progress = 0.0
    
     let items:[String]=["Hard","Medium","Soft"]
-    let eggTimes = ["Soft":300,"Medium":420,"Hard":720]
+    let eggTimes = ["Soft":30,"Medium":42,"Hard":72]
    
     var body: some View {
       
@@ -27,28 +28,30 @@ struct ContentView: View {
                 .font(.largeTitle)
                 .frame(width: 300, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .background(Capsule().fill(Color.orange).opacity(0.75))
-                .onReceive(timer) { time in
-                   
-                    
-                    if self.timepoiling > 0 {
-                        self.timepoiling -= 1
-                    }
-                }
-            Text("\(timepoiling)" + "\nSeconds   ")
-                .multilineTextAlignment(.center)
-                .font(.largeTitle)
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 40)
-                    .padding(.vertical, 10)
-                .background(
-                        Capsule()
-                            .fill(Color.blue)
-                            .opacity(0.85)
-                    )
                 
+            ZStack{
+            Circle().stroke(lineWidth: 80)
+                .opacity(0.25)
+                .foregroundColor(Color.red)
+                .frame(width: 80, height: 80, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            Circle()
+                .rotation(Angle(degrees: 270))
+                .trim(from: 0.0, to: CGFloat(progress))
+                   .stroke(style: StrokeStyle(lineWidth: 80, lineJoin: .round))
+                   .foregroundColor(Color.red)
+                .frame(width: 80, height: 80, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             
-         
-          
+                Text(String(format: "%.0f %%", min(Double(self.progress), 1.0)*100))
+                .font(.largeTitle)
+                .bold()
+                .onReceive(timer) { _ in
+                    if self.secondPass < timepoiling {
+                        secondPass += 1
+                        progress = secondPass/timepoiling
+                    }
+                          }
+            }
+            Spacer()
             HStack(spacing: 10){
                
                 ForEach(items,id:\.self){ item in
@@ -58,14 +61,18 @@ struct ContentView: View {
                         switch weather {
                         case "Hard":
                            
-                            timepoiling = eggTimes["Hard"]!
+                            timepoiling = Double(eggTimes["Hard"]!)
+                            secondPass = 0
                             
                         case "Medium":
-                            timepoiling = eggTimes["Medium"]!
+                            timepoiling = Double(eggTimes["Medium"]!)
+                            secondPass = 0
                         case "Soft":
-                            timepoiling = eggTimes["Soft"]!
+                            timepoiling = Double(eggTimes["Soft"]!)
+                            secondPass = 0
                         default:
                             timepoiling = 100
+                            secondPass = 0
                         }
                         
                         
@@ -73,7 +80,7 @@ struct ContentView: View {
                         
                         Image("\(item)").resizable()
                             
-                            .frame(width: 120, height: 120, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .frame(width: 130, height: 130, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                             .clipShape(Circle())
                             .shadow(radius: 10)
                             .overlay(Circle().stroke(Color.gray, lineWidth: 2))
