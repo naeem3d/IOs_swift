@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		234DC8C82621615D00C6C324 /* alarmNoize .mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 234DC8C72621615D00C6C324 /* alarmNoize .mp3 */; };
+		23554395262154AA0041B17F /* audioEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23554394262154AA0041B17F /* audioEffect.swift */; };
+		2355439F26215F980041B17F /* clock6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2355439E26215F980041B17F /* clock6.mp3 */; };
 		235F63A1261989CA00873809 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235F63A0261989CA00873809 /* AppDelegate.swift */; };
 		235F63A3261989CA00873809 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235F63A2261989CA00873809 /* SceneDelegate.swift */; };
 		235F63A5261989CA00873809 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235F63A4261989CA00873809 /* ContentView.swift */; };
@@ -16,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		234DC8C72621615D00C6C324 /* alarmNoize .mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "alarmNoize .mp3"; sourceTree = "<group>"; };
+		23554394262154AA0041B17F /* audioEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = audioEffect.swift; sourceTree = "<group>"; };
+		2355439E26215F980041B17F /* clock6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = clock6.mp3; sourceTree = "<group>"; };
 		235F639D261989CA00873809 /* zstak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zstak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		235F63A0261989CA00873809 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		235F63A2261989CA00873809 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +66,9 @@
 				235F63A2261989CA00873809 /* SceneDelegate.swift */,
 				235F63A4261989CA00873809 /* ContentView.swift */,
 				235F63A6261989CB00873809 /* Assets.xcassets */,
+				23554394262154AA0041B17F /* audioEffect.swift */,
+				2355439E26215F980041B17F /* clock6.mp3 */,
+				234DC8C72621615D00C6C324 /* alarmNoize .mp3 */,
 				235F63AB261989CB00873809 /* LaunchScreen.storyboard */,
 				235F63AE261989CB00873809 /* Info.plist */,
 				235F63A8261989CB00873809 /* Preview Content */,
@@ -134,6 +143,8 @@
 			files = (
 				235F63AD261989CB00873809 /* LaunchScreen.storyboard in Resources */,
 				235F63AA261989CB00873809 /* Preview Assets.xcassets in Resources */,
+				234DC8C82621615D00C6C324 /* alarmNoize .mp3 in Resources */,
+				2355439F26215F980041B17F /* clock6.mp3 in Resources */,
 				235F63A7261989CB00873809 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -148,6 +159,7 @@
 				235F63A1261989CA00873809 /* AppDelegate.swift in Sources */,
 				235F63A3261989CA00873809 /* SceneDelegate.swift in Sources */,
 				235F63A5261989CA00873809 /* ContentView.swift in Sources */,
+				23554395262154AA0041B17F /* audioEffect.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

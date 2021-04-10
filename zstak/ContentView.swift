@@ -6,8 +6,32 @@
 //
 
 import SwiftUI
+import AVFoundation
+
+
+
 
 struct ContentView: View {
+    
+    func playSound(sound: String, type: String) {
+        if let path = Bundle.main.path(forResource: sound, ofType: type) {
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+                audioPlayer?.play()
+            } catch {
+                print("ERROR")
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    @State var audioPlayer: AVAudioPlayer?
     @State var secondPass = 0.0
     @State private var isActive = true
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -16,7 +40,7 @@ struct ContentView: View {
     @State var progress = 0.0
    
     let items:[String]=["Hard","Medium","Soft"]
-    let eggTimes = ["Soft":30,"Medium":42,"Hard":72]
+    let eggTimes = ["Soft":3,"Medium":42,"Hard":72]
    
     var body: some View {
       
@@ -46,9 +70,20 @@ struct ContentView: View {
                 .bold()
                 .onReceive(timer) { _ in
                     if self.secondPass < timepoiling {
+                        play("clock6")
                         secondPass += 1
+                        if self.secondPass == timepoiling {
+                            play("alarmNoize ")
+                        }
+                    
                         progress = secondPass/timepoiling
+                        
+                        
                     }
+                    
+                   
+                    
+                    
                           }
             }
             Spacer()
@@ -58,6 +93,7 @@ struct ContentView: View {
                     
                     Button(action: {
                         weather = item
+                        
                         switch weather {
                         case "Hard":
                            
@@ -87,23 +123,33 @@ struct ContentView: View {
                     })
                     
                     
-                    .onReceive(timer) { time in
-                        if Int(weather) ?? 0 > 0 {weather = String( Int(weather)! - 1)}
-                        
-                    }
+                
                     
                 }
                 
-          
+        
             }
           
-            Spacer()
+            Button(action: {
+                timepoiling = 0
+                progress = 0
+                stop()
+                
+            }, label: {
+                Text("Stop").font(.system(size: 60))
+            })
             Spacer()
         }
         
       
     }
    
+    
+    
+    
+    
+    
+    
     
 }
 
